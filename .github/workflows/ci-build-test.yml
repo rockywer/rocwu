@@ -1,47 +1,37 @@
 ﻿name: CI Build & Test
-
-# 触发规则：main分支推送、所有PR
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
-# 运行环境
 jobs:
   build-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      # 1. 拉取仓库代码
-      - name: Checkout source code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. 配置Node.js（前端/JS项目）
-      - name: Setup Node.js
+      - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
 
-      # 3. 安装依赖
       - name: Install dependencies
         run: npm ci
 
-      # 4. 代码语法/格式校验
       - name: Lint code
         run: npm run lint
 
-      # 5. 单元测试
-      - name: Run unit test
+      - name: Unit test
         run: npm run test
 
-      # 6. 打包构建产物
       - name: Build project
         run: npm run build
 
-      # 7. 上传打包产物（可选，下载构建包）
-      - name: Upload build artifacts
+      - name: Upload build dist
         uses: actions/upload-artifact@v4
         with:
-          name: dist-files
+          name: dist-output
           path: dist/
