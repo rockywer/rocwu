@@ -1,0 +1,129 @@
+<view class="container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <view class="title">📱 朋友圈驾驶舱</view>
+    <view class="time">龙虾 7×24h 监控中</view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tabs">
+    <view class="tab {{activeTab==='overview'?'active':''}}" data-tab="overview" bindtap="switchTab">概览</view>
+    <view class="tab {{activeTab==='opps'?'active':''}}" data-tab="opps" bindtap="switchTab">商机</view>
+    <view class="tab {{activeTab==='alerts'?'active':''}}" data-tab="alerts" bindtap="switchTab">预警</view>
+    <view class="tab {{activeTab==='recent'?'active':''}}" data-tab="recent" bindtap="switchTab">动态</view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">加载中…</view>
+
+  <!-- 概览 -->
+  <view wx:if="{{!loading && activeTab==='overview'}}">
+    <view class="stats">
+      <view class="stat-card">
+        <view class="num">{{brief.totalMoments || moments.length}}</view>
+        <view class="label">今日入库动态</view>
+      </view>
+      <view class="stat-card">
+        <view class="num">{{brief.newOpportunities || opps.length}}</view>
+        <view class="label">待处理商机</view>
+      </view>
+      <view class="stat-card">
+        <view class="num danger">{{riskyCount}}</view>
+        <view class="label">风险信号</view>
+      </view>
+      <view class="stat-card">
+        <view class="num">{{bizTagCount || 0}}</view>
+        <view class="label">业务标签类型</view>
+      </view>
+    </view>
+
+    <!-- 标签分布 -->
+    <view class="card">
+      <view class="section-title">📊 业务标签分布</view>
+      <view wx:if="{{sortedBizTags && sortedBizTags.length}}">
+        <view wx:for="{{sortedBizTags}}" wx:key="*this">
+          <view style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;">
+            <text>{{item[0]}}</text>
+            <text style="color:#C9A86A;">{{item[1]}} 条</text>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="empty">
+        <text class="icon">📭</text>
+        暂无标签数据
+      </view>
+    </view>
+
+    <!-- 快捷操作 -->
+    <view class="card">
+      <view class="section-title">⚡ 快捷操作</view>
+      <view class="actions">
+        <view class="action-btn" data-q="朋友圈采集" bindtap="goChat">📥 模拟采集</view>
+        <view class="action-btn" data-q="朋友圈日报" bindtap="goChat">📊 今日日报</view>
+        <view class="action-btn" data-q="朋友圈商机" bindtap="goChat">🎯 查看商机</view>
+        <view class="action-btn" data-q="朋友圈预警" bindtap="goChat">⚠️ 舆情预警</view>
+        <view class="action-btn" data-q="导出 CSV" bindtap="goChat">📎 导出CSV</view>
+        <view class="action-btn" data-q="竞品动态" bindtap="goChat">🔍 竞品动态</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商机 -->
+  <view wx:if="{{!loading && activeTab==='opps'}}">
+    <view class="card" wx:if="{{opps.length}}">
+      <view class="section-title">🎯 待处理商机（{{opps.length}}条）</view>
+      <view wx:for="{{oppsList}}" wx:key="id" class="opp-item">
+        <view>
+          <text class="{{item.priorityClass}}">
+            {{item.displayPriority}}
+          </text>
+          [{{item.type}}] {{item.title}}
+        </view>
+        <view class="meta">来源：{{item.displaySourceAuthor}} | 板块：{{item.displayMatchBoard}}</view>
+      </view>
+    </view>
+    <view wx:else class="empty">
+      <text class="icon">🎯</text>
+      暂无新商机，采集朋友圈数据后将自动识别
+    </view>
+  </view>
+
+  <!-- 预警 -->
+  <view wx:if="{{!loading && activeTab==='alerts'}}">
+    <view class="card" wx:if="{{riskyCount > 0}}">
+      <view class="section-title">⚠️ 风险预警</view>
+      <view wx:for="{{riskMomentsList}}" wx:key="id" class="risk-item">
+        <view class="risk-critical">⚠️ {{item.displayAuthor}}</view>
+        <view class="content">{{item.displayRiskContent}}</view>
+        <view style="margin-top:4px;">
+          <text wx:for="{{item.riskFlags}}" wx:for-item="flag" wx:key="*this" class="tag-pill">{{flag}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">
+      <text class="icon">✅</text>
+      当前无风险信号
+    </view>
+  </view>
+
+  <!-- 最近动态 -->
+  <view wx:if="{{!loading && activeTab==='recent'}}">
+    <view class="card" wx:if="{{moments.length}}">
+      <view class="section-title">📋 最近动态（{{moments.length}}条）</view>
+      <view wx:for="{{recentMomentsList}}" wx:key="id" class="moment-item">
+        <view>
+          <text class="author">[{{item.displayCategory}}] {{item.displayAuthor}}</text>
+          <text class="time-tag">{{item.displayTime}}</text>
+        </view>
+        <view class="content">{{item.displayContent}}</view>
+        <view style="margin-top:4px;">
+          <text wx:for="{{item.bizTags || []}}" wx:for-item="tag" wx:key="*this" class="tag-pill">{{tag}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">
+      <text class="icon">📱</text>
+      暂无朋友圈数据
+    </view>
+  </view>
+</view>

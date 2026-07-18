@@ -1,0 +1,84 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">{{plan.title}}</view>
+    <view class="hero-sub">{{plan.subtitle}}</view>
+  </view>
+
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="*this" class="tab {{tabIdx === index ? 'active' : ''}}" data-idx="{{index}}" bindtap="switchTab">{{item}}</view>
+  </view>
+
+  <!-- 总览 -->
+  <block wx:if="{{tabIdx === 0}}">
+    <view class="card">
+      <view class="h">核心定位</view>
+      <view class="p">{{plan.positioning}}</view>
+    </view>
+    <view class="card">
+      <view class="h">核心使命</view>
+      <view class="li" wx:for="{{plan.mission}}" wx:key="*this" wx:for-item="m">· {{m}}</view>
+    </view>
+    <view class="card">
+      <view class="h">五大业务板块</view>
+      <view class="li" wx:for="{{plan.business}}" wx:key="name" wx:for-item="b">{{index + 1}}. {{b.name}}</view>
+    </view>
+    <view class="card tip">
+      2026 全年：12 场月度活动 · 4 场季度峰会 · SVIP 专属私董会/闭门会 · 专项训练营。切到「年度活动」查看详情。
+    </view>
+  </block>
+
+  <!-- 业务板块 -->
+  <block wx:if="{{tabIdx === 1}}">
+    <view class="card" wx:for="{{plan.business}}" wx:key="name" wx:for-item="b">
+      <view class="h">{{index + 1}}. {{b.name}}</view>
+      <view class="li" wx:for="{{b.items}}" wx:key="*this" wx:for-item="it">· {{it}}</view>
+    </view>
+  </block>
+
+  <!-- 年度活动 -->
+  <block wx:if="{{tabIdx === 2}}">
+    <view class="card">
+      <view class="h">月度固定活动（12 场）</view>
+      <view class="ev" wx:for="{{plan.calendar.monthly}}" wx:key="name" wx:for-item="m">
+        <view class="ev-name">{{m.name}} <text class="ev-time">{{m.time}}</text></view>
+        <view class="ev-detail">{{m.detail}}</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="h">季度重磅活动（4 场）</view>
+      <view class="ev" wx:for="{{plan.calendar.quarterly}}" wx:key="name" wx:for-item="m">
+        <view class="ev-name">{{m.name}} <text class="ev-time">{{m.time}}</text></view>
+        <view class="ev-detail">{{m.detail}}</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="h">SVIP 专属高端活动</view>
+      <view class="ev" wx:for="{{plan.calendar.svip}}" wx:key="name" wx:for-item="m">
+        <view class="ev-name">{{m.name}} <text class="ev-time">{{m.time}}</text></view>
+        <view class="ev-detail">{{m.detail}}</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="h">专项训练营 / 工作坊</view>
+      <view class="ev" wx:for="{{plan.calendar.camps}}" wx:key="name" wx:for-item="m">
+        <view class="ev-name">{{m.name}} <text class="ev-time">{{m.time}}</text></view>
+        <view class="ev-detail">{{m.detail}}</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 会员权益 -->
+  <block wx:if="{{tabIdx === 3}}">
+    <view class="card">
+      <view class="tbl-head">
+        <text class="c1">服务项目</text><text class="c2">VIP 基础</text><text class="c3">SVIP 理事</text>
+      </view>
+      <view class="tbl-row" wx:for="{{plan.matrix}}" wx:key="service" wx:for-item="r">
+        <text class="c1">{{r.service}}</text><text class="c2">{{r.VIP}}</text><text class="c3 gold">{{r.SVIP}}</text>
+      </view>
+    </view>
+    <view class="card tip">升级 SVIP 理事会员，解锁一对一资本诊断、头部机构直通、全流程上市/并购辅导与专属基金通道。</view>
+  </block>
+
+  <button class="chat-btn" bindtap="goChat">向龙虾智能体咨询研究院</button>
+</view>

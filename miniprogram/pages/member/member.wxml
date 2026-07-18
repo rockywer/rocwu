@@ -1,0 +1,46 @@
+<view class="page">
+  <view class="title">会员中心</view>
+  <view class="subtitle">凝聚浙商精英 · 五以理念</view>
+
+  <!-- 等级与权益 -->
+  <view class="card">
+    <view class="card-title">会员等级</view>
+    <view class="tier-row">
+      <view class="tier {{tier === 'VIP' ? 'active' : ''}}">
+        <view class="tier-name">VIP 基础</view>
+        <view class="tier-price gold">¥19,999/年</view>
+      </view>
+      <view class="tier {{tier === 'SVIP' ? 'active' : ''}}">
+        <view class="tier-name">SVIP 理事</view>
+        <view class="tier-price gold">¥39,999/年</view>
+      </view>
+    </view>
+    <view class="rights">
+      <view wx:for="{{rights}}" wx:key="*this" class="right-item">· {{item}}</view>
+    </view>
+  </view>
+
+  <!-- 入会申请 -->
+  <view class="card">
+    <view class="card-title">入会申请</view>
+    <view class="form">
+      <input class="fld" placeholder="您的姓名" placeholder-class="ph" value="{{name}}" bindinput="onName" />
+      <input class="fld" placeholder="企业名称" placeholder-class="ph" value="{{company}}" bindinput="onCompany" />
+      <view class="seg">
+        <view class="seg-item {{applyTier === 'VIP' ? 'on' : ''}}" bindtap="pickTier" data-t="VIP">VIP 基础</view>
+        <view class="seg-item {{applyTier === 'SVIP' ? 'on' : ''}}" bindtap="pickTier" data-t="SVIP">SVIP 理事</view>
+      </view>
+      <view class="btn" bindtap="submit">提交入会申请</view>
+    </view>
+  </view>
+
+  <!-- 我的档案 -->
+  <view class="card">
+    <view class="card-title">会员档案</view>
+    <view wx:if="{{members.length === 0}}" class="dim">暂无档案数据</view>
+    <view wx:for="{{members}}" wx:key="id" class="m-row">
+      <view class="m-name">{{item.name || item.memberId}}</view>
+      <view class="m-meta">{{item.tier || ''}} · {{item.company || ''}} · {{item.status || ''}}</view>
+    </view>
+  </view>
+</view>

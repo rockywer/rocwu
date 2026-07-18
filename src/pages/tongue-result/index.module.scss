@@ -1,0 +1,144 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: $spacing-xl;
+}
+
+.header {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  padding: $spacing-xl $spacing-lg;
+  padding-top: calc($spacing-xl + env(safe-area-inset-top));
+}
+
+.headerTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: #FFFFFF;
+}
+
+.headerDesc {
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: $spacing-xs;
+}
+
+.content {
+  padding: $spacing-lg;
+  margin-top: -$spacing-xl;
+}
+
+.resultCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.tongueImage {
+  width: 100%;
+  height: 400rpx;
+  border-radius: $radius-md;
+  background: $color-border-light;
+}
+
+.analysisSection {
+  margin-top: $spacing-lg;
+}
+
+.analysisItem {
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 1rpx solid $color-border-light;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.analysisLabel {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+}
+
+.analysisValue {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+}
+
+.constitutionCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.constitutionType {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+}
+
+.constitutionDesc {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  margin-top: $spacing-md;
+  line-height: 1.6;
+}
+
+.suggestionsCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.suggestionsTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.suggestionItem {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+}
+
+.suggestionIcon {
+  color: $color-primary;
+  font-size: $font-size-lg;
+}
+
+.actionButton {
+  margin-top: $spacing-md;
+  background: $color-primary;
+  color: #FFFFFF;
+  border-radius: $radius-button;
+  padding: $spacing-md $spacing-xl;
+  font-size: $font-size-base;
+  text-align: center;
+  
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.disclaimer {
+  margin-top: $spacing-xl;
+  padding: $spacing-lg;
+  background: rgba($color-warning, 0.1);
+  border-radius: $radius-md;
+  font-size: $font-size-xs;
+  color: $color-warning;
+  line-height: 1.6;
+}

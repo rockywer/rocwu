@@ -1,0 +1,149 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 40rpx;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 640rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.warningHeader {
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.warningIcon {
+  font-size: 48rpx;
+}
+
+.warningLevel {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.warningBody {
+  padding: 32rpx;
+}
+
+.warningTitle {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #333333;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.warningMessage {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 32rpx;
+}
+
+.recommendations {
+  background: #F8F9FA;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.recommendationsTitle {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.recommendationItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.recommendationItem:last-child {
+  margin-bottom: 0;
+}
+
+.recommendationIcon {
+  font-size: 24rpx;
+  color: #2ECC71;
+  margin-right: 12rpx;
+}
+
+.recommendationItem Text:last-child {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.emergencySection {
+  background: rgba(217, 48, 38, 0.05);
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.emergencyText {
+  font-size: 28rpx;
+  color: #D93026;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.emergencyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #D93026;
+  border-radius: 40rpx;
+  padding: 24rpx;
+}
+
+.emergencyButton Text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2ECC71;
+  border-radius: 40rpx;
+  padding: 28rpx;
+}
+
+.actionButton Text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.disclaimer {
+  padding: 20rpx 32rpx;
+  background: #F5F9F5;
+}
+
+.disclaimer Text {
+  font-size: 22rpx;
+  color: #999999;
+  text-align: center;
+}

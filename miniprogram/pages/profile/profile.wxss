@@ -1,0 +1,65 @@
+.hero {
+  text-align: center;
+  padding: 50rpx 0 30rpx;
+}
+.hero-emoji { font-size: 110rpx; }
+.hero-name {
+  font-size: 46rpx;
+  font-weight: 700;
+  color: var(--gold-soft, #E4CFA0);
+  margin-top: 16rpx;
+}
+.hero-sub {
+  font-size: 26rpx;
+  color: var(--text-dim, #8A8F98);
+  margin-top: 10rpx;
+}
+.intro {
+  margin-top: 16rpx;
+  line-height: 1.7;
+}
+.skill-row {
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #2A313C;
+}
+.skill-row:last-child { border-bottom: none; }
+.skill-name {
+  font-size: 28rpx;
+  color: var(--text, #E8EAF0);
+}
+.skill-desc {
+  font-size: 24rpx;
+  color: var(--text-dim, #8A8F98);
+  margin-top: 6rpx;
+}
+.ops {
+  display: flex;
+  margin-top: 10rpx;
+}
+.ops-item {
+  flex: 1;
+  text-align: center;
+}
+.ops-num {
+  font-size: 44rpx;
+  font-weight: 700;
+}
+.ops-label {
+  font-size: 24rpx;
+  color: var(--text-dim, #8A8F98);
+  margin-top: 8rpx;
+}
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 36rpx;
+}
+.dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+.dot.on { background: #4ADE80; }
+.dot.off { background: #F87171; }

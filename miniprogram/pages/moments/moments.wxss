@@ -1,0 +1,224 @@
+/* 朋友圈驾驶舱页面样式 */
+page {
+  background: #0E1116;
+  color: #E0E0E0;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+}
+
+.container {
+  padding: 16px;
+  min-height: 100vh;
+}
+
+/* 顶部标题 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(200,168,107,.15);
+}
+.header .title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #C9A86A;
+}
+.header .time {
+  font-size: 11px;
+  color: #8A8F98;
+}
+
+/* Tab 切换 */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: #161B22;
+  border-radius: 10px;
+  padding: 4px;
+}
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 6px;
+  font-size: 13px;
+  color: #8A8F98;
+  border-radius: 8px;
+  transition: .2s;
+  border: none;
+  background: none;
+}
+.tab.active {
+  background: linear-gradient(135deg, rgba(200,168,107,.2), rgba(200,168,107,.08));
+  color: #C9A86A;
+  font-weight: 600;
+}
+
+/* 概览统计卡片 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.stat-card {
+  background: #161B22;
+  border: 1px solid rgba(200,168,107,.1);
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+}
+.stat-card .num {
+  font-size: 28px;
+  font-weight: 700;
+  color: #C9A86A;
+}
+.stat-card .num.danger {
+  color: #E85D5D;
+}
+.stat-card .label {
+  font-size: 11px;
+  color: #8A8F98;
+  margin-top: 4px;
+}
+
+/* 卡片通用 */
+.card {
+  background: #161B22;
+  border: 1px solid rgba(200,168,107,.1);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.card .section-title {
+  font-size: 14px;
+  color: #C9A86A;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(200,168,107,.08);
+}
+
+/* 商机列表 */
+.opp-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(200,168,107,.06);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.opp-item:last-child {
+  border-bottom: none;
+}
+.opp-item .pri-high {
+  color: #E85D5D;
+  font-weight: 600;
+}
+.opp-item .pri-medium {
+  color: #C9A86A;
+}
+.opp-item .meta {
+  font-size: 11px;
+  color: #6B7280;
+}
+
+/* 风险预警 */
+.risk-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(232,93,93,.1);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.risk-item:last-child {
+  border-bottom: none;
+}
+.risk-critical {
+  color: #E85D5D;
+}
+.risk-high {
+  color: #F59E0B;
+}
+.risk-medium {
+  color: #FBBF24;
+}
+.risk-low {
+  color: #6B7280;
+}
+
+/* 标签 */
+.tag-pill {
+  display: inline-block;
+  background: rgba(200,168,107,.12);
+  color: #C9A86A;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  margin: 3px 4px 3px 0;
+}
+
+/* 快捷操作 */
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.action-btn {
+  background: linear-gradient(135deg, rgba(200,168,107,.1), rgba(200,168,107,.04));
+  border: 1px solid rgba(200,168,107,.15);
+  border-radius: 10px;
+  padding: 14px 10px;
+  color: #E0E0E0;
+  font-size: 13px;
+  text-align: center;
+  transition: .2s;
+}
+.action-btn:active {
+  border-color: #C9A86A;
+  background: rgba(200,168,107,.2);
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 30px 16px;
+  color: #6B7280;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.empty .icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* 最近动态 */
+.moment-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(200,168,107,.06);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.moment-item:last-child {
+  border-bottom: none;
+}
+.moment-item .author {
+  color: #C9A86A;
+  font-weight: 500;
+}
+.moment-item .time-tag {
+  font-size: 11px;
+  color: #6B7280;
+  margin-left: 6px;
+}
+.moment-item .content {
+  color: #B0B8C4;
+  margin-top: 4px;
+  word-break: break-all;
+}
+
+/* 加载状态 */
+.loading {
+  text-align: center;
+  padding: 40px 16px;
+  color: #8A8F98;
+  font-size: 14px;
+}

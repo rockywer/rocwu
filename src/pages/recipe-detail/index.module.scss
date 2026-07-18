@@ -1,0 +1,185 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+}
+
+.recipeImage {
+  width: 100%;
+  height: 400rpx;
+}
+
+.content {
+  padding: $spacing-lg;
+  margin-top: -$spacing-xl;
+}
+
+.recipeHeader {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+}
+
+.recipeName {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+}
+
+.recipeTags {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.recipeTag {
+  font-size: $font-size-xs;
+  color: $color-primary;
+  background: rgba($color-primary, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: $radius-sm;
+}
+
+.recipeDesc {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  margin-top: $spacing-md;
+  line-height: 1.6;
+}
+
+.sectionCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-top: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.ingredientItem {
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
+  border-bottom: 1rpx solid $color-border-light;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ingredientName {
+  font-size: $font-size-base;
+  color: $color-text-primary;
+}
+
+.ingredientAmount {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+}
+
+.stepItem {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.stepNumber {
+  width: 48rpx;
+  height: 48rpx;
+  background: $color-primary;
+  color: #FFFFFF;
+  border-radius: $radius-round;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  flex-shrink: 0;
+}
+
+.stepContent {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  line-height: 1.6;
+}
+
+.nutritionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-md;
+}
+
+.nutritionItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+}
+
+.nutritionValue {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+}
+
+.nutritionLabel {
+  font-size: $font-size-xs;
+  color: $color-text-auxiliary;
+}
+
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $spacing-lg;
+  padding-bottom: calc($spacing-lg + env(safe-area-inset-bottom));
+  background: $color-bg-card;
+  box-shadow: $shadow-float;
+  display: flex;
+  gap: $spacing-md;
+}
+
+.bottomButton {
+  flex: 1;
+  height: $button-height-lg;
+  background: $color-primary;
+  color: #FFFFFF;
+  border-radius: $radius-button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.bottomButtonOutline {
+  background: transparent;
+  border: 2rpx solid $color-primary;
+  color: $color-primary;
+}
+
+.divider {
+  height: $tabbar-height;
+}

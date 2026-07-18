@@ -1,0 +1,46 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-emoji">🦞</view>
+    <view class="hero-name">龙虾智能体</view>
+    <view class="hero-sub">中科青禾浙商创新俱乐部 · 运营中心</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">智能体简介</view>
+    <view class="dim intro">基于 OpenClaw 开源框架理念构建的浙商专属 AI 智能体，自主执行、7×24 服务，覆盖会员全生命周期、板块报名、资源对接、权益答疑与运营复盘。</view>
+    <view class="btn-ghost" style="margin-top:20rpx;" bindtap="goBoards">查看十八大板块体系 →</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">已注册技能（{{skills.length}}）</view>
+    <view wx:if="{{skills.length === 0}}" class="dim">加载中…</view>
+    <view wx:for="{{skills}}" wx:key="slug" class="skill-row">
+      <view class="skill-name">{{item.slug}}</view>
+      <view wx:if="{{item.description}}" class="skill-desc">{{item.description}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">运营数据</view>
+    <view wx:if="{{ops === null}}" class="dim">加载中…</view>
+    <view wx:else class="ops">
+      <view class="ops-item">
+        <view class="ops-num gold">{{ops.memberCount != null ? ops.memberCount : '-'}}</view>
+        <view class="ops-label">会员数</view>
+      </view>
+      <view class="ops-item">
+        <view class="ops-num gold">{{ops.joinCount != null ? ops.joinCount : '-'}}</view>
+        <view class="ops-label">入会申请</view>
+      </view>
+      <view class="ops-item">
+        <view class="ops-num gold">{{ops.signupCount != null ? ops.signupCount : '-'}}</view>
+        <view class="ops-label">板块报名</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="status">
+    <view class="dot {{online ? 'on' : 'off'}}"></view>
+    <text class="dim">{{online ? '后端服务在线' : '后端离线（请检查服务）'}}</text>
+  </view>
+</view>

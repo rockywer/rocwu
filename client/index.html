@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🤖 TikTok Shop 欧洲跨境AI虚拟团队 · 管理中心</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #818cf8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #3b82f6;
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-hover: #334155;
+      --border: #334155;
+      --text: #f1f5f9;
+      --text-dim: #94a3b8;
+      --text-muted: #64748b;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.4);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+    }
+    .app { display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+    .sidebar {
+      background: linear-gradient(180deg, #1e293b, var(--bg));
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      display: flex; flex-direction: column; gap: 20px;
+      overflow-y: auto;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+    }
+    .brand .logo { font-size: 32px; }
+    .brand h1 { font-size: 16px; color: var(--primary-light); font-weight: 600; }
+    .brand p { font-size: 11px; color: var(--text-muted); }
+    .nav { display: flex; flex-direction: column; gap: 4px; }
+    .nav button {
+      background: transparent; border: none; color: var(--text-dim);
+      text-align: left; padding: 10px 12px; border-radius: 8px; cursor: pointer;
+      font-size: 13px; transition: all .2s; display: flex; align-items: center; gap: 8px;
+    }
+    .nav button:hover { background: var(--bg-hover); color: var(--text); }
+    .nav button.active { background: rgba(99,102,241,0.15); color: var(--primary-light); }
+    .nav button .icon { font-size: 16px; }
+    .system-info { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); }
+    .system-info .stat { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
+    .system-info .stat b { color: var(--primary-light); }
+    .main { display: flex; flex-direction: column; overflow: hidden; }
+    .topbar {
+      padding: 16px 24px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg-card);
+    }
+    .topbar h2 { font-size: 16px; font-weight: 600; }
+    .topbar .meta { font-size: 12px; color: var(--text-dim); }
+    .topbar .meta .status { color: var(--success); font-weight: 600; }
+    .content { flex: 1; overflow-y: auto; padding: 20px; }
+    .section { margin-bottom: 24px; }
+    .section-title { font-size: 14px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .section-title .badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(99,102,241,0.15); color: var(--primary-light); font-weight: 500; }
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-8 { grid-template-columns: repeat(8, 1fr); }
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px; transition: all .2s;
+    }
+    .card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .card-title { font-size: 13px; color: var(--text-dim); }
+    .card-value { font-size: 28px; font-weight: 700; color: var(--text); }
+    .card-value.small { font-size: 18px; }
+    .card-change { font-size: 12px; margin-top: 4px; }
+    .card-change.up { color: var(--success); }
+    .card-change.down { color: var(--danger); }
+    .card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .card-icon.purple { background: rgba(168,85,247,0.15); color: #a855f7; }
+    .card-icon.blue { background: rgba(59,130,246,0.15); color: #3b82f6; }
+    .card-icon.green { background: rgba(16,185,129,0.15); color: #10b981; }
+    .card-icon.orange { background: rgba(245,158,11,0.15); color: #f59e0b; }
+    .card-icon.red { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .card-icon.cyan { background: rgba(6,182,212,0.15); color: #06b6d4; }
+    .role-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px; cursor: pointer; transition: all .2s; text-align: center;
+    }
+    .role-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .role-card.active { border-color: var(--success); background: rgba(16,185,129,0.08); }
+    .role-card .avatar {
+      width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 24px;
+    }
+    .role-card .role-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .role-card .role-position { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .role-card .status { font-size: 10px; padding: 2px 6px; border-radius: 8px; margin-top: 8px; display: inline-block; }
+    .status.online { background: rgba(16,185,129,0.15); color: var(--success); }
+    .status.busy { background: rgba(245,158,11,0.15); color: var(--warning); }
+    .status.offline { background: rgba(100,116,139,0.15); color: var(--text-muted); }
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: var(--border);
+    }
+    .timeline-item { position: relative; padding: 12px 0; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -20px; top: 16px; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--primary); border: 2px solid var(--bg);
+    }
+    .timeline-item.active::before { background: var(--success); }
+    .timeline-item.done::before { background: var(--text-muted); }
+    .timeline-item .step { font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+    .timeline-item .title { font-size: 13px; font-weight: 500; color: var(--text); }
+    .timeline-item .desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+    .timeline-item .role { font-size: 11px; color: var(--primary-light); margin-top: 4px; }
+    .task-list { display: flex; flex-direction: column; gap: 8px; }
+    .task-item {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px; display: flex; align-items: center; gap: 12px; transition: all .2s;
+    }
+    .task-item:hover { border-color: var(--primary); }
+    .task-item.completed { opacity: 0.6; }
+    .task-item .check {
+      width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 12px;
+    }
+    .task-item.completed .check { background: var(--success); border-color: var(--success); color: white; }
+    .task-item .info { flex: 1; }
+    .task-item .title { font-size: 13px; color: var(--text); font-weight: 500; }
+    .task-item .meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .task-item .priority { font-size: 10px; padding: 2px 6px; border-radius: 6px; }
+    .priority.high { background: rgba(239,68,68,0.15); color: var(--danger); }
+    .priority.normal { background: rgba(59,130,246,0.15); color: var(--info); }
+    .kpi-bar { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; margin: 8px 0; }
+    .kpi-bar-fill { height: 100%; border-radius: 4px; transition: width .3s; }
+    .kpi-bar-fill.green { background: var(--success); }
+    .kpi-bar-fill.yellow { background: var(--warning); }
+    .kpi-bar-fill.red { background: var(--danger); }
+    .progress-ring {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: conic-gradient(var(--primary) calc(var(--progress) * 1%), var(--bg) 0);
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .progress-ring::before {
+      content: ''; position: absolute; width: 50px; height: 50px; background: var(--bg-card); border-radius: 50%;
+    }
+    .progress-ring span { position: relative; font-size: 12px; font-weight: 600; color: var(--text); }
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7);
+      display: none; align-items: center; justify-content: center; z-index: 1000;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto;
+    }
+    .modal-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h3 { font-size: 16px; }
+    .modal-header .close { background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
+    .modal-body { padding: 20px; }
+    .modal-body p { font-size: 14px; line-height: 1.6; color: var(--text-dim); margin-bottom: 12px; }
+    .modal-body ul { padding-left: 20px; margin-bottom: 12px; }
+    .modal-body li { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+    .btn {
+      background: var(--primary); border: none; color: white; padding: 10px 20px;
+      border-radius: 8px; font-size: 13px; cursor: pointer; transition: all .2s;
+    }
+    .btn:hover { background: var(--primary-dark); }
+    .btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary-light); }
+    .btn-outline:hover { background: rgba(99,102,241,0.1); }
+    .btn-sm { padding: 6px 12px; font-size: 12px; }
+    .btn-success { background: var(--success); }
+    .btn-success:hover { background: #059669; }
+    .btn-warning { background: var(--warning); }
+    .btn-warning:hover { background: #d97706; }
+    .btn-danger { background: var(--danger); }
+    .btn-danger:hover { background: #dc2626; }
+    .tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+    .tab {
+      background: transparent; border: none; color: var(--text-dim);
+      padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: all .2s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { background: rgba(99,102,241,0.15); color: var(--primary-light); }
+    .empty-state { text-align: center; padding: 40px; color: var(--text-muted); }
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .table th { color: var(--text-muted); font-weight: 500; }
+    .table td { color: var(--text); }
+    .table tr:hover td { background: rgba(99,102,241,0.05); }
+    .badge { font-size: 11px; padding: 3px 8px; border-radius: 6px; }
+    .badge.success { background: rgba(16,185,129,0.15); color: var(--success); }
+    .badge.warning { background: rgba(245,158,11,0.15); color: var(--warning); }
+    .badge.danger { background: rgba(239,68,68,0.15); color: var(--danger); }
+    .badge.info { background: rgba(59,130,246,0.15); color: var(--info); }
+    .badge.primary { background: rgba(99,102,241,0.15); color: var(--primary-light); }
+    .search-box {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 14px; font-size: 13px; color: var(--text); outline: none;
+      width: 200px; transition: border-color .2s;
+    }
+    .search-box:focus { border-color: var(--primary); }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+    .flex-center { display: flex; align-items: center; gap: 8px; }
+    .gap-8 { gap: 8px; }
+    .gap-12 { gap: 12px; }
+    .mt-12 { margin-top: 12px; }
+    .mb-12 { margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">🤖</div>
+        <div>
+          <h1>AI虚拟团队</h1>
+          <p>TikTok欧洲跨境专属</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="active" data-view="dashboard"><span class="icon">📊</span> 总览Dashboard</button>
+        <button data-view="roles"><span class="icon">👥</span> AI角色定岗</button>
+        <button data-view="workflow"><span class="icon">🔄</span> 流程协作</button>
+        <button data-view="tasks"><span class="icon">📋</span> 任务调度</button>
+        <button data-view="kpi"><span class="icon">🎯</span> 考核迭代</button>
+        <button data-view="products"><span class="icon">📦</span> 选品库</button>
+        <button data-view="compliance"><span class="icon">🛡️</span> 合规风控</button>
+        <button data-view="shops"><span class="icon">🏪</span> 店铺管理</button>
+        <button data-view="tools"><span class="icon">⚒️</span> AI工具能力</button>
+        <button data-view="knowledge"><span class="icon">📚</span> 知识库管理</button>
+        <button data-view="roadmap"><span class="icon">🗺️</span> 实施路线图</button>
+        <button data-view="analytics"><span class="icon">📈</span> 数据分析</button>
+      </nav>
+      <div class="system-info">
+        <div class="stat"><span>AI角色数</span><b>8</b></div>
+        <div class="stat"><span>今日任务</span><b id="sys-tasks">0</b></div>
+        <div class="stat"><span>运行状态</span><b class="status">● 在线</b></div>
+      </div>
+    </aside>
+
+    <section class="main">
+      <div class="topbar">
+        <div>
+          <h2 id="page-title">📊 总览Dashboard</h2>
+          <div class="meta">最后更新：<span id="last-update">刚刚</span> · 状态：<span class="status">● 正常运行</span></div>
+        </div>
+        <div class="flex-center gap-8">
+          <input type="text" class="search-box" placeholder="搜索..." />
+          <button class="btn btn-sm" onclick="startDailyWorkflow()">🚀 启动日度流程</button>
+        </div>
+      </div>
+
+      <div class="content">
+        <div id="view-dashboard" class="view">
+          <div class="grid grid-4 mb-24">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">今日GMV</div>
+                  <div class="card-value">¥128,500</div>
+                  <div class="card-change up">+12.5% vs 昨日</div>
+                </div>
+                <div class="card-icon purple">💰</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">订单数</div>
+                  <div class="card-value">456</div>
+                  <div class="card-change up">+8.3% vs 昨日</div>
+                </div>
+                <div class="card-icon blue">📦</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">转化率</div>
+                  <div class="card-value small">3.8%</div>
+                  <div class="card-change up">+0.5%</div>
+                </div>
+                <div class="card-icon green">📈</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">广告ROI</div>
+                  <div class="card-value small">2.8:1</div>
+                  <div class="card-change up">+0.3</div>
+                </div>
+                <div class="card-icon orange">🎯</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div>
+              <div class="section-title">🔄 <span>日度协作流程</span> <span class="badge">进行中</span></div>
+              <div class="card">
+                <div class="timeline">
+                  <div class="timeline-item active">
+                    <div class="step">Step 1</div>
+                    <div class="title">下发当日任务</div>
+                    <div class="desc">上架、测品、投放、合规自查、素材更新</div>
+                    <div class="role">👤 AI总负责人</div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="step">Step 2</div>
+                    <div class="title">输出当日测品清单</div>
+                    <div class="desc">AI选品专员输出测品清单，AI店铺运营完成商品合规上架</div>
+                    <div class="role">👤 AI选品爆品专员 · AI店铺运营专员</div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="step">Step 3</div>
+                    <div class="title">输出本土化素材</div>
+                    <div class="desc">AI内容达人专员输出素材，AI投放专员搭建投放计划、申领平台补贴</div>
+                    <div class="role">👤 AI内容达人专员 · AI投放运营专员</div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="step">Step 4</div>
+                    <div class="title">全链路合规审核</div>
+                    <div class="desc">审核商品、素材、投放合规性，规避风险</div>
+                    <div class="role">👤 AI政策合规专员</div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="step">Step 5</div>
+                    <div class="title">统计当日数据</div>
+                    <div class="desc">输出问题清单与优化建议</div>
+                    <div class="role">👤 AI数据复盘专员</div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="step">Step 6</div>
+                    <div class="title">汇总当日工作</div>
+                    <div class="desc">调整次日运营策略</div>
+                    <div class="role">👤 AI总负责人</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">📋 <span>今日任务</span> <span class="badge" id="today-task-count">0</span></div>
+              <div class="card" style="max-height: 400px; overflow-y: auto;">
+                <div class="task-list" id="today-tasks">
+                  <div class="empty-state">
+                    <div class="icon">📭</div>
+                    <p>暂无今日任务</p>
+                    <button class="btn btn-sm mt-12" onclick="generateDailyPlan()">生成今日计划</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-4">
+            <div>
+              <div class="section-title">🎯 <span>AI角色状态</span></div>
+              <div class="card">
+                <div class="flex-center gap-12 mb-12">
+                  <div class="progress-ring" style="--progress: 100"><span>8/8</span></div>
+                  <div>
+                    <div class="card-value small">全部在线</div>
+                    <div class="card-title">AI角色</div>
+                  </div>
+                </div>
+                <div class="grid grid-2 gap-4">
+                  <div class="flex-center gap-4">
+                    <div style="width:8px;height:8px;border-radius:50%;background:var(--success)"></div>
+                    <span style="font-size:12px;color:var(--text-dim)">在线</span>
+                  </div>
+                  <div class="flex-center gap-4">
+                    <div style="width:8px;height:8px;border-radius:50%;background:var(--warning)"></div>
+                    <span style="font-size:12px;color:var(--text-dim)">忙碌</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">🛡️ <span>合规状态</span></div>
+              <div class="card">
+                <div class="flex-center gap-12 mb-12">
+                  <div class="progress-ring" style="--progress: 95"><span>95%</span></div>
+                  <div>
+                    <div class="card-value small">合规率</div>
+                    <div class="card-title">本月审核</div>
+                  </div>
+                </div>
+                <div class="kpi-bar">
+                  <div class="kpi-bar-fill green" style="width:95%"></div>
+                </div>
+                <div style="font-size:12px;color:var(--text-dim);text-align:right">3项待处理</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">🔥 <span>选品进度</span></div>
+              <div class="card">
+                <div class="flex-center gap-12 mb-12">
+                  <div class="progress-ring" style="--progress: 78"><span>78%</span></div>
+                  <div>
+                    <div class="card-value small">完成率</div>
+                    <div class="card-title">今日选品</div>
+                  </div>
+                </div>
+                <div class="kpi-bar">
+                  <div class="kpi-bar-fill yellow" style="width:78%"></div>
+                </div>
+                <div style="font-size:12px;color:var(--text-dim);text-align:right">8/10款已完成</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-title">💰 <span>政策红利</span></div>
+              <div class="card">
+                <div class="flex-center gap-12 mb-12">
+                  <div class="progress-ring" style="--progress: 80"><span>80%</span></div>
+                  <div>
+                    <div class="card-value small">申领率</div>
+                    <div class="card-title">本月补贴</div>
+                  </div>
+                </div>
+                <div class="kpi-bar">
+                  <div class="kpi-bar-fill green" style="width:80%"></div>
+                </div>
+                <div style="font-size:12px;color:var(--text-dim);text-align:right">¥12,500已领取</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-roles" class="view hidden">
+          <div class="section-title">👥 <span>AI角色定岗体系</span> <span class="badge">8大角色</span></div>
+          <div class="grid grid-8">
+            <div class="role-card active" onclick="showRoleDetail('leader')">
+              <div class="avatar" style="background:linear-gradient(135deg,#6366f1,#4f46e5)">🎯</div>
+              <div class="role-name">AI总负责人</div>
+              <div class="role-position">团队总指挥</div>
+              <div class="status online">在线</div>
+            </div>
+            <div class="role-card" onclick="showRoleDetail('compliance')">
+              <div class="avatar" style="background:linear-gradient(135deg,#ef4444,#dc2626)">🛡️</div>
+              <div class="role-name">AI合规专员</div>
+              <div class="role-position">风控底线岗</div>
+              <div class="status online">在线</div>
+            </div>
+            <div class="role-card" onclick="showRoleDetail('product')">
+              <div class="avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">🔥</div>
+              <div class="role-name">AI选品专员</div>
+              <div class="role-position">增长核心岗</div>
+              <div class="status busy">忙碌</div>
+            </div>
+            <div class="role-card" onclick="showRoleDetail('content')">
+              <div class="avatar" style="background:linear-gradient(135deg,#ec4899,#db2777)">🎬</div>
+              <div class="role-name">AI内容专员</div>
+              <div class="role-position">种草转化岗</div>
+              <div class="status online">在线</div>
+            </div>
+            <div class="role-card" onclick="showRoleDetail('ads')">
+              <div class="avatar" style="background:linear-gradient(135deg,#10b981,#059669)">🚀</div>
+              <div class="role-name">AI投放专员</div>
+              <div class="role-position">盈利提效岗</div>
+              <div class="status online">在线</div>
+            </div>
+            <div class="role-card" onclick="showRoleDetail('shop')">
+              <div class="avatar" style="background:linear-gradient(135deg,#3b82f6,#2563eb)">🏪</div>
+              <div class="role-name">AI店铺运营</div>
+              <div class="role-position">基础履约岗</div>
+              <div class="status online">在线</div>
+            </div>
+            <div class="role-card" onclick="showRoleDetail('data')">
+              <div class="avatar" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">📊</div>
+              <div class="role-name">AI数据复盘</div>
+              <div class="role-position">迭代优化岗</div>
+              <div class="status online">在线</div>
+            </div>
+            <div class="role-card" onclick="showRoleDetail('expand')">
+              <div class="avatar" style="background:linear-gradient(135deg,#a855f7,#9333ea)">🌍</div>
+              <div class="role-name">AI招商拓店</div>
+              <div class="role-position">规模增量岗</div>
+              <div class="status online">在线</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-workflow" class="view hidden">
+          <div class="tabs">
+            <button class="tab active" onclick="switchWorkflowTab('daily')">📅 日度流程</button>
+            <button class="tab" onclick="switchWorkflowTab('weekly')">📊 周度流程</button>
+            <button class="tab" onclick="switchWorkflowTab('monthly')">📋 月度流程</button>
+          </div>
+
+          <div id="workflow-daily">
+            <div class="card">
+              <h3 style="font-size:16px;margin-bottom:16px">日度协作SOP</h3>
+              <div class="timeline">
+                <div class="timeline-item active">
+                  <div class="step">09:00</div>
+                  <div class="title">AI总负责人下发当日任务</div>
+                  <div class="desc">上架、测品、投放、合规自查、素材更新</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="step">10:00</div>
+                  <div class="title">AI选品专员输出测品清单</div>
+                  <div class="desc">AI店铺运营专员完成商品合规上架</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="step">14:00</div>
+                  <div class="title">AI内容达人专员输出本土化素材</div>
+                  <div class="desc">AI投放专员搭建投放计划、申领平台补贴</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="step">16:00</div>
+                  <div class="title">AI合规专员全链路审核</div>
+                  <div class="desc">审核商品、素材、投放合规性</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="step">20:00</div>
+                  <div class="title">AI数据复盘专员统计数据</div>
+                  <div class="desc">输出问题清单与优化建议</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="step">22:00</div>
+                  <div class="title">AI总负责人汇总工作</div>
+                  <div class="desc">调整次日运营策略</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="workflow-weekly" class="hidden">
+            <div class="card">
+              <h3 style="font-size:16px;margin-bottom:16px">周度增长流程</h3>
+              <div class="grid grid-2">
+                <div class="card" style="border:none;background:transparent">
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <div class="step">周一</div>
+                      <div class="title">AI选品专员复盘爆款数据</div>
+                      <div class="desc">更新趋势选品库，淘汰低效产品</div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="step">周三</div>
+                      <div class="title">AI内容&投放联合优化</div>
+                      <div class="desc">优化高ROI素材与投放模型</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" style="border:none;background:transparent">
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <div class="step">周五</div>
+                      <div class="title">AI招商拓店评估站点增量</div>
+                      <div class="desc">推进EU8蓝海站点扩店布局</div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="step">周日</div>
+                      <div class="title">全岗位激励政策复盘</div>
+                      <div class="desc">最大化收割广告金、低佣权益</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="workflow-monthly" class="hidden">
+            <div class="card">
+              <h3 style="font-size:16px;margin-bottom:16px">月度合规&规模流程</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="step">月初</div>
+                  <div class="title">AI合规专员全面合规体检</div>
+                  <div class="desc">更新资质、排查违规风险</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="step">月中</div>
+                  <div class="title">AI数据专员核算整体利润</div>
+                  <div class="desc">成本结构、补贴收益，优化成本模型</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="step">月末</div>
+                  <div class="title">AI总负责人制定下月规划</div>
+                  <div class="desc">上新、拓店、大促备战整体规划</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-tasks" class="view hidden">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTaskTab('daily')">📅 日度任务</button>
+            <button class="tab" onclick="switchTaskTab('weekly')">📊 周度任务</button>
+            <button class="tab" onclick="switchTaskTab('monthly')">📋 月度任务</button>
+          </div>
+          <div id="task-list-container">
+            <div class="card" style="max-height:500px;overflow-y:auto">
+              <div class="task-list" id="task-list">
+                <div class="empty-state">
+                  <div class="icon">📋</div>
+                  <p>暂无任务</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-kpi" class="view hidden">
+          <div class="section-title">🎯 <span>AI考核迭代体系</span></div>
+          <div class="grid grid-2">
+            <div class="card">
+              <h3 style="font-size:14px;margin-bottom:16px">各岗位KPI完成情况</h3>
+              <div style="display:flex;flex-direction:column;gap:16px">
+                <div>
+                  <div class="flex-between">
+                    <span style="font-size:13px;color:var(--text)">合规零违规</span>
+                    <span style="font-size:13px;color:var(--success)">100%</span>
+                  </div>
+                  <div class="kpi-bar"><div class="kpi-bar-fill green" style="width:100%"></div></div>
+                </div>
+                <div>
+                  <div class="flex-between">
+                    <span style="font-size:13px;color:var(--text)">月产出爆款</span>
+                    <span style="font-size:13px;color:var(--success)">3/5款</span>
+                  </div>
+                  <div class="kpi-bar"><div class="kpi-bar-fill green" style="width:60%"></div></div>
+                </div>
+                <div>
+                  <div class="flex-between">
+                    <span style="font-size:13px;color:var(--text)">投放ROI正向</span>
+                    <span style="font-size:13px;color:var(--success)">2.8:1</span>
+                  </div>
+                  <div class="kpi-bar"><div class="kpi-bar-fill green" style="width:80%"></div></div>
+                </div>
+                <div>
+                  <div class="flex-between">
+                    <span style="font-size:13px;color:var(--text)">商品上架合规率</span>
+                    <span style="font-size:13px;color:var(--success)">100%</span>
+                  </div>
+                  <div class="kpi-bar"><div class="kpi-bar-fill green" style="width:100%"></div></div>
+                </div>
+                <div>
+                  <div class="flex-between">
+                    <span style="font-size:13px;color:var(--text)">数据报表零差错</span>
+                    <span style="font-size:13px;color:var(--success)">100%</span>
+                  </div>
+                  <div class="kpi-bar"><div class="kpi-bar-fill green" style="width:100%"></div></div>
+                </div>
+                <div>
+                  <div class="flex-between">
+                    <span style="font-size:13px;color:var(--text)">拓店进度</span>
+                    <span style="font-size:13px;color:var(--warning)">60%</span>
+                  </div>
+                  <div class="kpi-bar"><div class="kpi-bar-fill yellow" style="width:60%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3 style="font-size:14px;margin-bottom:16px">三级迭代优化机制</h3>
+              <div class="grid grid-3 gap-8">
+                <div style="text-align:center;padding:16px;background:rgba(59,130,246,0.1);border-radius:12px">
+                  <div style="font-size:24px;margin-bottom:8px">📅</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--text)">日迭代</div>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:4px">当日问题当日整改</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:rgba(168,85,247,0.1);border-radius:12px">
+                  <div style="font-size:24px;margin-bottom:8px">📊</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--text)">周迭代</div>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:4px">复盘岗位短板</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:rgba(16,185,129,0.1);border-radius:12px">
+                  <div style="font-size:24px;margin-bottom:8px">📋</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--text)">月迭代</div>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:4px">升级AI岗位能力</div>
+                </div>
+              </div>
+              <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+                <h4 style="font-size:13px;color:var(--text);margin-bottom:8px">人工干预机制</h4>
+                <ul style="font-size:12px;color:var(--text-dim);padding-left:20px">
+                  <li>日常基础工作：AI全权自主执行，无人值守</li>
+                  <li>核心决策工作：AI输出方案，人工终审执行</li>
+                  <li>突发问题：AI预警，人工快速介入处理</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-products" class="view hidden">
+          <div class="flex-between mb-12">
+            <div class="section-title">📦 <span>选品库</span></div>
+            <button class="btn btn-sm" onclick="generateProductList()">✨ 生成选品清单</button>
+          </div>
+          <div class="card">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>商品名称</th>
+                  <th>品类</th>
+                  <th>适配站点</th>
+                  <th>售价</th>
+                  <th>利润率</th>
+                  <th>合规风险</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="product-table-body">
+                <tr><td colspan="8" class="empty-state"><div class="icon">📦</div><p>暂无选品数据</p></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="view-compliance" class="view hidden">
+          <div class="flex-between mb-12">
+            <div class="section-title">🛡️ <span>合规风控</span></div>
+            <button class="btn btn-sm" onclick="scanRisk()">🔍 风险扫描</button>
+          </div>
+          <div class="grid grid-2">
+            <div class="card">
+              <h3 style="font-size:14px;margin-bottom:16px">合规规则</h3>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div class="flex-between items-center p-4 bg:rgba(239,68,68,0.08);border-radius:8px">
+                  <span>GDPR</span>
+                  <span class="badge danger">通用数据保护条例</span>
+                </div>
+                <div class="flex-between items-center p-4 bg:rgba(245,158,11,0.08);border-radius:8px">
+                  <span>EPR</span>
+                  <span class="badge warning">生产者责任延伸</span>
+                </div>
+                <div class="flex-between items-center p-4 bg:rgba(59,130,246,0.08);border-radius:8px">
+                  <span>VAT</span>
+                  <span class="badge info">增值税</span>
+                </div>
+                <div class="flex-between items-center p-4 bg:rgba(16,185,129,0.08);border-radius:8px">
+                  <span>CE</span>
+                  <span class="badge success">CE认证</span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3 style="font-size:14px;margin-bottom:16px">风险预警</h3>
+              <div id="risk-alerts">
+                <div class="empty-state">
+                  <div class="icon">✅</div>
+                  <p>暂无风险预警</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-shops" class="view hidden">
+          <div class="flex-between mb-12">
+            <div class="section-title">🏪 <span>店铺管理</span></div>
+            <button class="btn btn-sm" onclick="showAddShopModal()">➕ 添加店铺</button>
+          </div>
+          
+          <div id="shop-list-container">
+            <div class="card" style="min-height:400px">
+              <div id="shop-list-content">
+                <div class="empty-state">
+                  <div class="icon">🏪</div>
+                  <p>暂无已接入的店铺</p>
+                  <button class="btn btn-sm mt-12" onclick="showAddShopModal()">接入我的店铺</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-tools" class="view hidden">
+          <div class="section-title">⚒️ <span>AI工具能力体系</span></div>
+          <div class="card" style="min-height:400px"></div>
+        </div>
+
+        <div id="view-knowledge" class="view hidden">
+          <div class="section-title">📚 <span>知识库管理</span></div>
+          <div class="card" style="min-height:400px"></div>
+        </div>
+
+        <div id="view-roadmap" class="view hidden">
+          <div class="section-title">🗺️ <span>7天实施路线图</span></div>
+          <div class="card" style="min-height:400px"></div>
+        </div>
+
+        <div id="view-analytics" class="view hidden">
+          <div class="section-title">📈 <span>数据分析</span></div>
+          <div class="grid grid-2">
+            <div class="card">
+              <h3 style="font-size:14px;margin-bottom:16px">核心指标趋势</h3>
+              <div style="display:flex;flex-direction:column;gap:16px">
+                <div>
+                  <div class="flex-between mb-4">
+                    <span style="font-size:12px;color:var(--text-muted)">GMV趋势</span>
+                    <span style="font-size:12px;color:var(--success)">+12.5%</span>
+                  </div>
+                  <div style="height:100px;background:rgba(99,102,241,0.1);border-radius:8px;display:flex;align-items:flex-end;gap:8px;padding:8px">
+                    <div style="flex:1;height:60%;background:var(--primary);border-radius:4px"></div>
+                    <div style="flex:1;height:75%;background:var(--primary);border-radius:4px"></div>
+                    <div style="flex:1;height:65%;background:var(--primary);border-radius:4px"></div>
+                    <div style="flex:1;height:85%;background:var(--primary);border-radius:4px"></div>
+                    <div style="flex:1;height:100%;background:var(--primary);border-radius:4px"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex-between mb-4">
+                    <span style="font-size:12px;color:var(--text-muted)">转化率趋势</span>
+                    <span style="font-size:12px;color:var(--success)">+0.5%</span>
+                  </div>
+                  <div style="height:100px;background:rgba(16,185,129,0.1);border-radius:8px;display:flex;align-items:flex-end;gap:8px;padding:8px">
+                    <div style="flex:1;height:70%;background:var(--success);border-radius:4px"></div>
+                    <div style="flex:1;height:65%;background:var(--success);border-radius:4px"></div>
+                    <div style="flex:1;height:75%;background:var(--success);border-radius:4px"></div>
+                    <div style="flex:1;height:72%;background:var(--success);border-radius:4px"></div>
+                    <div style="flex:1;height:80%;background:var(--success);border-radius:4px"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <h3 style="font-size:14px;margin-bottom:16px">站点表现</h3>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div class="flex-between items-center p-4 bg:rgba(99,102,241,0.08);border-radius:8px">
+                  <div>
+                    <div style="font-size:13px;color:var(--text)">DE 德国</div>
+                    <div style="font-size:11px;color:var(--text-muted)">占比 30%</div>
+                  </div>
+                  <div class="progress-ring" style="--progress:85"><span>85%</span></div>
+                </div>
+                <div class="flex-between items-center p-4 bg:rgba(59,130,246,0.08);border-radius:8px">
+                  <div>
+                    <div style="font-size:13px;color:var(--text)">FR 法国</div>
+                    <div style="font-size:11px;color:var(--text-muted)">占比 23%</div>
+                  </div>
+                  <div class="progress-ring" style="--progress:75"><span>75%</span></div>
+                </div>
+                <div class="flex-between items-center p-4 bg:rgba(16,185,129,0.08);border-radius:8px">
+                  <div>
+                    <div style="font-size:13px;color:var(--text)">UK 英国</div>
+                    <div style="font-size:11px;color:var(--text-muted)">占比 20%</div>
+                  </div>
+                  <div class="progress-ring" style="--progress:70"><span>70%</span></div>
+                </div>
+                <div class="flex-between items-center p-4 bg:rgba(245,158,11,0.08);border-radius:8px">
+                  <div>
+                    <div style="font-size:13px;color:var(--text)">PL 波兰</div>
+                    <div style="font-size:11px;color:var(--text-muted)">占比 17%</div>
+                  </div>
+                  <div class="progress-ring" style="--progress:60"><span>60%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-overlay" id="role-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">AI角色详情</h3>
+        <button class="close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modal-content"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="shop-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="shop-modal-title">接入店铺</h3>
+        <button class="close" onclick="closeShopModal()">×</button>
+      </div>
+      <div class="modal-body" id="shop-modal-content">
+        <form id="shop-form" onsubmit="handleShopSubmit(event)">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div>
+              <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px">店铺名称 *</label>
+              <input type="text" id="shop-name" class="search-box" style="width:100%" placeholder="输入店铺名称" required />
+            </div>
+            <div>
+              <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px">所属站点 *</label>
+              <select id="shop-site" class="search-box" style="width:100%">
+                <option value="DE">🇩🇪 德国 (DE)</option>
+                <option value="FR">🇫🇷 法国 (FR)</option>
+                <option value="UK">🇬🇧 英国 (UK)</option>
+                <option value="ES">🇪🇸 西班牙 (ES)</option>
+                <option value="IT">🇮🇹 意大利 (IT)</option>
+                <option value="NL">🇳🇱 荷兰 (NL)</option>
+                <option value="BE">🇧🇪 比利时 (BE)</option>
+                <option value="PL">🇵🇱 波兰 (PL)</option>
+                <option value="CZ">🇨🇿 捷克 (CZ)</option>
+                <option value="HU">🇭🇺 匈牙利 (HU)</option>
+                <option value="RO">🇷🇴 罗马尼亚 (RO)</option>
+                <option value="BG">🇧🇬 保加利亚 (BG)</option>
+                <option value="SE">🇸🇪 瑞典 (SE)</option>
+                <option value="AT">🇦🇹 奥地利 (AT)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px">Shop ID</label>
+              <input type="text" id="shop-id" class="search-box" style="width:100%" placeholder="输入Shop ID" />
+            </div>
+            <div>
+              <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px">App Key</label>
+              <input type="text" id="app-key" class="search-box" style="width:100%" placeholder="TikTok Shop App Key" />
+            </div>
+            <div>
+              <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px">App Secret</label>
+              <input type="password" id="app-secret" class="search-box" style="width:100%" placeholder="TikTok Shop App Secret" />
+            </div>
+            <div>
+              <label style="font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px">OAuth Redirect URL</label>
+              <input type="text" id="redirect-url" class="search-box" style="width:100%" placeholder="OAuth回调地址" />
+            </div>
+            <div style="margin-top:16px;text-align:right">
+              <button type="button" class="btn btn-sm btn-outline" onclick="closeShopModal()">取消</button>
+              <button type="submit" class="btn btn-sm">接入店铺</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

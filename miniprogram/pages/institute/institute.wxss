@@ -1,0 +1,121 @@
+.page {
+  padding: 24rpx 24rpx 80rpx;
+  min-height: 100vh;
+  background: #0E1116;
+}
+.hero {
+  text-align: center;
+  padding: 30rpx 10rpx 20rpx;
+}
+.hero-title {
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #E8EAF0;
+  letter-spacing: 2rpx;
+}
+.hero-sub {
+  font-size: 24rpx;
+  color: #C9A86A;
+  margin-top: 12rpx;
+}
+.tabs {
+  display: flex;
+  gap: 10rpx;
+  margin: 24rpx 0 20rpx;
+  background: #161B22;
+  border-radius: 16rpx;
+  padding: 8rpx;
+}
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 25rpx;
+  color: #8A8F98;
+  padding: 16rpx 0;
+  border-radius: 12rpx;
+}
+.tab.active {
+  background: #C9A86A;
+  color: #14181F;
+  font-weight: 700;
+}
+.card {
+  background: #161B22;
+  border: 1rpx solid #232A35;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+.card .h {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #E4CFA0;
+  margin-bottom: 14rpx;
+}
+.card .p {
+  font-size: 25rpx;
+  color: #B7BEC9;
+  line-height: 1.8;
+}
+.card .li {
+  font-size: 25rpx;
+  color: #B7BEC9;
+  line-height: 1.8;
+  padding: 4rpx 0;
+}
+.card.tip {
+  font-size: 23rpx;
+  color: #8A8F98;
+  line-height: 1.7;
+  background: #12171E;
+  border: 1rpx dashed #2A313C;
+}
+.ev {
+  padding: 12rpx 0;
+  border-bottom: 1rpx dashed #1E242D;
+}
+.ev:last-child {
+  border-bottom: none;
+}
+.ev-name {
+  font-size: 26rpx;
+  color: #E8EAF0;
+  font-weight: 600;
+}
+.ev-time {
+  font-size: 22rpx;
+  color: #C9A86A;
+  font-weight: 400;
+  margin-left: 10rpx;
+}
+.ev-detail {
+  font-size: 23rpx;
+  color: #8A8F98;
+  line-height: 1.7;
+  margin-top: 6rpx;
+}
+.tbl-head, .tbl-row {
+  display: flex;
+  font-size: 23rpx;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #232A35;
+}
+.tbl-head {
+  color: #C9A86A;
+  font-weight: 700;
+}
+.tbl-row .c1 { color: #E8EAF0; }
+.tbl-row .c2 { color: #8A8F98; }
+.tbl-row .c3 { color: #C9A86A; }
+.tbl-row .c1, .tbl-head .c1 { flex: 2; }
+.tbl-row .c2, .tbl-head .c2 { flex: 1.4; }
+.tbl-row .c3, .tbl-head .c3 { flex: 1.6; }
+.chat-btn {
+  margin-top: 20rpx;
+  background: #C9A86A;
+  color: #14181F;
+  font-size: 28rpx;
+  font-weight: 700;
+  border-radius: 14rpx;
+  padding: 20rpx 0;
+}

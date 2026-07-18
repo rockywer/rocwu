@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="title">符合条件的企业</view>
+  <view class="subtitle">浙商会员企业画像 · 智能检索</view>
+
+  <view class="filters">
+    <input class="search" placeholder="搜索企业名 / 行业 / 地域 / 标签" placeholder-class="ph" value="{{kw}}" bindinput="onKw" confirm-type="search" bindconfirm="apply" />
+    <view class="row">
+      <picker class="picker" range="{{industries}}" value="{{indIdx}}" bindchange="onIndustry">
+        <view class="picker-text">{{industries[indIdx]}}</view>
+      </picker>
+      <picker class="picker" range="{{regions}}" value="{{regIdx}}" bindchange="onRegion">
+        <view class="picker-text">{{regions[regIdx]}}</view>
+      </picker>
+      <picker class="picker" range="{{tiers}}" value="{{tierIdx}}" bindchange="onTier">
+        <view class="picker-text">{{tiers[tierIdx]}}</view>
+      </picker>
+    </view>
+    <view class="row">
+      <picker class="picker" range="{{revenues}}" value="{{revIdx}}" bindchange="onRevenue">
+        <view class="picker-text">{{revenues[revIdx]}}</view>
+      </picker>
+      <picker class="picker" range="{{tags}}" value="{{tagIdx}}" bindchange="onTag">
+        <view class="picker-text">{{tags[tagIdx]}}</view>
+      </picker>
+    </view>
+    <view class="row">
+      <picker class="picker" range="{{sorts}}" value="{{sortIdx}}" bindchange="onSort">
+        <view class="picker-text">{{sorts[sortIdx]}}</view>
+      </picker>
+      <view class="picker reset" bindtap="reset"><view class="picker-text">重置</view></view>
+      <view class="picker placeholder"></view>
+    </view>
+  </view>
+
+  <view class="count dim">共 {{list.length}} 家</view>
+
+  <view wx:for="{{list}}" wx:key="id" class="co-card">
+    <view class="co-head">
+      <view class="co-name">{{item.name}}</view>
+      <view class="co-tier gold">{{item.tier}}</view>
+    </view>
+    <view class="co-meta">{{item.industry}} · {{item.region}} · {{item.scale}} · 年营收 {{item.revenue}}</view>
+    <view class="co-tags">
+      <text wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this" class="tag">{{t}}</text>
+    </view>
+    <view class="co-intro dim">{{item.intro}}</view>
+    <view class="co-ask" bindtap="ask" data-q="帮我对接{{item.name}}">对接这家 ›</view>
+  </view>
+
+  <view wx:if="{{list.length === 0}}" class="dim empty">未匹配到企业，试试放宽条件。</view>
+</view>

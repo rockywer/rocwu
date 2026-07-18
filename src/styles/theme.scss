@@ -1,0 +1,71 @@
+$color-primary: #2ECC71;
+$color-primary-light: #58D68D;
+$color-primary-dark: #27AE60;
+
+$color-secondary: #F39C12;
+$color-secondary-light: #F5B041;
+
+$color-bg-page: #F5F9F5;
+$color-bg-card: #FFFFFF;
+$color-bg-hover: #F0F0F0;
+
+$color-text-primary: #1D2129;
+$color-text-secondary: #4E5969;
+$color-text-auxiliary: #86909C;
+$color-text-disabled: #C9CDD4;
+
+$color-border: #E5E6EB;
+$color-border-light: #F2F3F5;
+
+$color-success: #00B42A;
+$color-warning: #FF7D00;
+$color-error: #F53F3F;
+$color-info: #1677FF;
+
+$color-gold: #FFD700;
+$color-silver: #C0C0C0;
+$color-bronze: #CD7F32;
+
+$shadow-card: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+$shadow-float: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+$shadow-card-hover: 0 4rpx 20rpx rgba(0, 0, 0, 0.12);
+$shadow-popup: 0 8rpx 32rpx rgba(0, 0, 0, 0.15);
+
+$radius-sm: 8rpx;
+$radius-md: 12rpx;
+$radius-lg: 16rpx;
+$radius-xl: 24rpx;
+$radius-button: 48rpx;
+$radius-round: 999rpx;
+
+$spacing-xs: 8rpx;
+$spacing-sm: 16rpx;
+$spacing-md: 24rpx;
+$spacing-lg: 32rpx;
+$spacing-xl: 48rpx;
+$spacing-xxl: 64rpx;
+
+$font-size-xs: 22rpx;
+$font-size-sm: 24rpx;
+$font-size-base: 28rpx;
+$font-size-md: 30rpx;
+$font-size-lg: 34rpx;
+$font-size-xl: 40rpx;
+$font-size-xxl: 48rpx;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$button-height-sm: 64rpx;
+$button-height-md: 80rpx;
+$button-height-lg: 96rpx;
+
+$transition-base: all 0.3s ease;
+$transition-fast: all 0.15s ease;
+
+$page-padding: 32rpx;
+$max-content-width: 686rpx;
+
+$tabbar-height: 100rpx;

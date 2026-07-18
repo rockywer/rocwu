@@ -1,0 +1,13 @@
+<view class="page">
+  <view class="title">十八大服务体系</view>
+  <view class="subtitle">中科青禾浙商创新俱乐部 · 全维度赋能</view>
+
+  <view class="grid">
+    <view wx:for="{{boards}}" wx:key="name" class="board-card" bindtap="{{item.page ? 'goPage' : 'ask'}}" data-q="{{item.q}}" data-page="{{item.page}}">
+      <view class="board-emoji">{{item.emoji}}</view>
+      <view class="board-name">{{item.name}}</view>
+      <view class="board-desc">{{item.desc}}</view>
+      <view class="board-go gold">{{item.page ? '查看 ›' : '咨询 ›'}}</view>
+    </view>
+  </view>
+</view>

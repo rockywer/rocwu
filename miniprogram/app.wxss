@@ -1,0 +1,82 @@
+/* 🦞 龙虾智能体 —— 浙商金全局样式 */
+page {
+  --bg: #0E1116;
+  --card: rgba(22, 27, 34, 0.85);
+  --card-2: rgba(28, 35, 45, 0.85);
+  --gold: #C9A86A;
+  --gold-soft: #E4CFA0;
+  --text: #E8EAF0;
+  --text-dim: #8A8F98;
+  --line: rgba(42, 49, 60, 0.7);
+  background: var(--bg);
+  background-image: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=luxurious%20Chinese%20style%20meeting%20room%20with%20wooden%20furniture%20and%20tea%20set%20modern%20office%20interior%20elegant%20atmosphere%20warm%20lighting%20large%20windows%20city%20view%20business%20club&image_size=landscape_16_9');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24rpx 28rpx calc(40rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  background: rgba(14, 17, 22, 0.65);
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--gold-soft);
+  letter-spacing: 2rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: var(--text-dim);
+  margin-top: 8rpx;
+}
+
+.card {
+  background: var(--card);
+  border: 1rpx solid var(--line);
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-top: 24rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.dim {
+  color: var(--text-dim);
+  font-size: 26rpx;
+}
+
+.gold {
+  color: var(--gold);
+}
+
+.btn {
+  background: linear-gradient(135deg, #C9A86A, #A6863F);
+  color: #0E1116;
+  font-weight: 600;
+  border-radius: 999rpx;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 1rpx solid var(--gold);
+  border-radius: 999rpx;
+  text-align: center;
+  padding: 18rpx 0;
+  font-size: 28rpx;
+}

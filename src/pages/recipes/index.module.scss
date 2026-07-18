@@ -1,0 +1,195 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: $tabbar-height;
+}
+
+.header {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  padding: $spacing-xl $spacing-lg;
+  padding-top: calc($spacing-xl + env(safe-area-inset-top));
+}
+
+.headerTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: #FFFFFF;
+}
+
+.headerDesc {
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: $spacing-xs;
+}
+
+.searchBar {
+  margin-top: $spacing-lg;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: $radius-button;
+  padding: $spacing-sm $spacing-lg;
+}
+
+.searchIcon {
+  font-size: $font-size-lg;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: $font-size-base;
+  margin-left: $spacing-sm;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.content {
+  padding: $spacing-lg;
+}
+
+.categoryTabs {
+  display: flex;
+  gap: $spacing-sm;
+  overflow-x: auto;
+  padding-bottom: $spacing-sm;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.categoryTab {
+  flex-shrink: 0;
+  padding: $spacing-sm $spacing-lg;
+  background: $color-bg-card;
+  border-radius: $radius-button;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  white-space: nowrap;
+  
+  &.active {
+    background: $color-primary;
+    color: #FFFFFF;
+  }
+  
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin: $spacing-lg 0 $spacing-md;
+}
+
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+}
+
+.recipeCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.recipeImage {
+  width: 100%;
+  height: 200rpx;
+}
+
+.recipeInfo {
+  padding: $spacing-md;
+}
+
+.recipeName {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.recipeDesc {
+  font-size: $font-size-xs;
+  color: $color-text-auxiliary;
+  margin-top: $spacing-xs;
+  @include text-ellipsis-multi(2);
+}
+
+.recipeTags {
+  display: flex;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.recipeTag {
+  font-size: $font-size-xs;
+  color: $color-primary;
+  background: rgba($color-primary, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: $radius-sm;
+}
+
+.recipeFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 1rpx solid $color-border-light;
+}
+
+.recipeCalories {
+  font-size: $font-size-xs;
+  color: $color-text-auxiliary;
+}
+
+.recipeArrow {
+  font-size: $font-size-base;
+  color: $color-text-auxiliary;
+}
+
+.bannerCard {
+  background: linear-gradient(135deg, $color-secondary 0%, $color-secondary-light 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-top: $spacing-md;
+  color: #FFFFFF;
+}
+
+.bannerTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+}
+
+.bannerDesc {
+  font-size: $font-size-sm;
+  opacity: 0.9;
+  margin-top: $spacing-xs;
+}
+
+.bannerButton {
+  margin-top: $spacing-lg;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: $radius-button;
+  padding: $spacing-sm $spacing-xl;
+  font-size: $font-size-sm;
+  text-align: center;
+}

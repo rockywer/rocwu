@@ -1,0 +1,59 @@
+.page {
+  padding: 28rpx 28rpx 60rpx;
+}
+.title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--text, #E8EAF0);
+  text-align: center;
+}
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin: 20rpx 0 8rpx;
+}
+.type {
+  font-size: 22rpx;
+  color: var(--gold, #C9A86A);
+  border: 1rpx solid #2A313C;
+  border-radius: 999rpx;
+  padding: 8rpx 18rpx;
+}
+.sec-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--gold-soft, #E4CFA0);
+  margin-top: 30rpx;
+}
+.sec-fields {
+  margin-top: 12rpx;
+}
+.field {
+  font-size: 25rpx;
+  color: var(--text-dim, #8A8F98);
+  line-height: 1.8;
+  padding: 6rpx 0;
+  border-bottom: 1rpx dashed #1E242D;
+}
+.actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 50rpx;
+}
+.btn {
+  flex: 1;
+  border-radius: 14rpx;
+  font-size: 28rpx;
+  padding: 18rpx 0;
+}
+.gold {
+  background: var(--gold, #C9A86A);
+  color: #14181F;
+  font-weight: 600;
+}
+.ghost {
+  background: transparent;
+  color: var(--text-dim, #8A8F98);
+  border: 1rpx solid #2A313C;
+}

@@ -1,0 +1,23 @@
+@use '@/styles/variables.scss' as *;
+
+.card {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+}
+
+.paddingSm {
+  padding: $spacing-sm;
+}
+
+.paddingMd {
+  padding: $spacing-lg;
+}
+
+.paddingLg {
+  padding: $spacing-xl;
+}
+
+.paddingNone {
+  padding: 0;
+}

@@ -1,0 +1,45 @@
+<view class="chat-page">
+  <!-- 顶部工具栏 -->
+  <view class="toolbar" wx:if="{{messages.length > 0}}">
+    <view class="toolbar-left">对话记录</view>
+    <view class="toolbar-actions">
+      <view class="tool-btn" bindtap="copyLastReply">复制回复</view>
+      <view class="tool-btn danger" bindtap="clearChat">清空</view>
+    </view>
+  </view>
+
+  <scroll-view class="msg-list" scroll-y="true" scroll-into-view="{{scrollTarget}}" scroll-with-animation="true">
+    <view wx:if="{{messages.length === 0}}" class="empty">
+      <view class="empty-emoji">🦞</view>
+      <view class="empty-title">浙商专属 AI 智能体</view>
+      <view class="empty-tip">凝聚浙商精英 · 五以理念 · 7×24 服务</view>
+      <view class="quick-wrap">
+        <view wx:for="{{quick}}" wx:key="*this" class="quick" bindtap="sendQuick" data-text="{{item}}">{{item}}</view>
+      </view>
+    </view>
+
+    <view wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}">
+      <chat-bubble role="{{item.role}}" content="{{item.content}}" />
+    </view>
+
+    <view wx:if="{{loading}}" id="msg-loading">
+      <chat-bubble role="agent" content="正在思考…" />
+    </view>
+
+    <!-- 底部锚点：确保最后一条消息可滚动到 -->
+    <view id="msg-bottom" style="height:20rpx;"></view>
+  </scroll-view>
+
+  <view class="input-bar">
+    <input
+      class="input"
+      value="{{inputText}}"
+      placeholder="说点什么，如：申请SVIP理事会员"
+      placeholder-class="ph"
+      bindinput="onInput"
+      confirm-type="send"
+      bindconfirm="send"
+    />
+    <view class="send-btn" bindtap="send">发送</view>
+  </view>
+</view>

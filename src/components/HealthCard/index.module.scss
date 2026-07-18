@@ -1,0 +1,43 @@
+@use '@/styles/variables.scss' as *;
+
+.healthCard {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.typeName {
+  font-size: $font-size-sm;
+  color: $color-text-auxiliary;
+}
+
+.valueSection {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-xs;
+}
+
+.value {
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+}
+
+.unit {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+}
+
+.footer {
+  margin-top: $spacing-xs;
+}
+
+.date {
+  font-size: $font-size-xs;
+  color: $color-text-auxiliary;
+}

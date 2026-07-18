@@ -1,0 +1,146 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #2ECC71 0%, #F5F9F5 40%);
+  display: flex;
+  flex-direction: column;
+}
+
+.logoSection {
+  padding: 80rpx 40rpx 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.appName {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 16rpx;
+}
+
+.appSlogan {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.content {
+  flex: 1;
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.featureList {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 60rpx;
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featureIcon {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.featureText {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.loginCard {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 48rpx 40rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+}
+
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #07C160;
+  border-radius: 40rpx;
+  padding: 28rpx;
+  margin-bottom: 32rpx;
+}
+
+.loginIcon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.loginText {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.loginLoading {
+  margin-left: 16rpx;
+  color: #FFFFFF;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 2rpx;
+  background: #EEEEEE;
+}
+
+.dividerText {
+  padding: 0 24rpx;
+  font-size: 24rpx;
+  color: #CCCCCC;
+}
+
+.guestButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx solid #DDDDDD;
+  border-radius: 40rpx;
+  padding: 28rpx;
+}
+
+.guestText {
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.privacyText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40rpx;
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.link {
+  color: #2ECC71;
+  margin: 0 8rpx;
+}
+
+.disclaimer {
+  padding: 24rpx 40rpx;
+  font-size: 22rpx;
+  color: #FF6B6B;
+  text-align: center;
+  background: rgba(255, 107, 107, 0.05);
+}

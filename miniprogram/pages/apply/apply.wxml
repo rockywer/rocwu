@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="title">{{form.title}}</view>
+  <view class="types">
+    <text class="type" wx:for="{{form.memberTypes}}" wx:key="*this">{{item}}</text>
+  </view>
+
+  <block wx:for="{{form.sections}}" wx:key="title" wx:for-item="sec">
+    <view class="sec-title">{{sec.title}}</view>
+    <view class="sec-fields">
+      <view class="field" wx:for="{{sec.fields}}" wx:key="*this" wx:for-item="f">· {{f}}</view>
+    </view>
+  </block>
+
+  <view class="actions">
+    <button class="btn ghost" bindtap="goBack">返回</button>
+    <button class="btn gold" bindtap="goApply">去对话提交申请</button>
+  </view>
+</view>

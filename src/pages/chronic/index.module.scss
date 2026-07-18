@@ -1,0 +1,218 @@
+@use '@/styles/variables.scss' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: $tabbar-height;
+}
+
+.header {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  padding: $spacing-xl $spacing-lg;
+  padding-top: calc($spacing-xl + env(safe-area-inset-top));
+}
+
+.headerTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: #FFFFFF;
+}
+
+.headerDesc {
+  font-size: $font-size-sm;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: $spacing-xs;
+}
+
+.content {
+  padding: $spacing-lg;
+  margin-top: -$spacing-xl;
+}
+
+.sectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.conditionCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.conditionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.conditionName {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.conditionStatus {
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-button;
+  font-size: $font-size-xs;
+  
+  &.controlled {
+    background: rgba($color-success, 0.1);
+    color: $color-success;
+  }
+  
+  &.uncontrolled {
+    background: rgba($color-warning, 0.1);
+    color: $color-warning;
+  }
+}
+
+.conditionBody {
+  margin-top: $spacing-md;
+}
+
+.conditionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0;
+  border-bottom: 1rpx solid $color-border-light;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.conditionLabel {
+  font-size: $font-size-sm;
+  color: $color-text-auxiliary;
+}
+
+.conditionValue {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.recordCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.recordGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+}
+
+.recordItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+  
+  &:active {
+    background: $color-bg-hover;
+  }
+}
+
+.recordIcon {
+  font-size: 40rpx;
+}
+
+.recordName {
+  font-size: $font-size-xs;
+  color: $color-text-auxiliary;
+}
+
+.redLineCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.redLineTitle {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-error;
+  margin-bottom: $spacing-md;
+}
+
+.redLineList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.redLineItem {
+  padding: $spacing-xs $spacing-md;
+  background: rgba($color-error, 0.1);
+  color: $color-error;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+}
+
+.exerciseCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.exerciseTitle {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  margin-bottom: $spacing-md;
+}
+
+.exerciseItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-sm 0;
+}
+
+.exerciseIcon {
+  width: 64rpx;
+  height: 64rpx;
+  background: rgba($color-primary, 0.1);
+  border-radius: $radius-round;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.exerciseInfo {
+  flex: 1;
+}
+
+.exerciseName {
+  font-size: $font-size-base;
+  color: $color-text-primary;
+}
+
+.exerciseDesc {
+  font-size: $font-size-xs;
+  color: $color-text-auxiliary;
+}
+
+.divider {
+  height: $spacing-md;
+  background: $color-bg-page;
+}

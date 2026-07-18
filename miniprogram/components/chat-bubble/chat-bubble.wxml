@@ -1,0 +1,7 @@
+<view class="bubble-row {{role === 'user' ? 'right' : 'left'}}">
+  <view wx:if="{{role === 'agent'}}" class="avatar">🦞</view>
+  <view class="bubble {{role === 'user' ? 'bubble-user' : 'bubble-agent'}}">
+    <text class="bubble-text" user-select="{{true}}">{{content}}</text>
+  </view>
+  <view wx:if="{{role === 'user'}}" class="avatar user">我</view>
+</view>

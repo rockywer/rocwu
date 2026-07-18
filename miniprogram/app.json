@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/chat/chat",
+    "pages/boards/boards",
+    "pages/companies/companies",
+    "pages/member/member",
+    "pages/apply/apply",
+    "pages/institute/institute",
+    "pages/moments/moments",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTitleText": "龙虾智能体",
+    "navigationBarBackgroundColor": "#0E1116",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0E1116",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#8A8F98",
+    "selectedColor": "#C9A86A",
+    "backgroundColor": "#0E1116",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "对话"
+      },
+      {
+        "pagePath": "pages/boards/boards",
+        "text": "板块"
+      },
+      {
+        "pagePath": "pages/companies/companies",
+        "text": "企业库"
+      },
+      {
+        "pagePath": "pages/member/member",
+        "text": "会员"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "关于"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

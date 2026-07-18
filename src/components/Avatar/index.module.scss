@@ -1,0 +1,51 @@
+@use '@/styles/variables.scss' as *;
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: $color-border-light;
+}
+
+.sizeSm {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.sizeMd {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.sizeLg {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.shapeCircle {
+  border-radius: $radius-round;
+}
+
+.shapeSquare {
+  border-radius: $radius-md;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-border-light;
+}
+
+.placeholderText {
+  font-size: $font-size-xs;
+  color: $color-text-auxiliary;
+}

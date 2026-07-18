@@ -1,0 +1,38 @@
+{
+  "name": "qinghe-health-agent",
+  "version": "1.0.0",
+  "description": "青禾大健康食养智能体",
+  "private": true,
+  "scripts": {
+    "build:weapp": "taro build --type weapp",
+    "build:h5": "taro build --type h5",
+    "dev:weapp": "taro build --type weapp --watch",
+    "dev:h5": "taro build --type h5 --watch"
+  },
+  "dependencies": {
+    "@tarojs/cli": "^3.6.30",
+    "@tarojs/components": "^3.6.30",
+    "@tarojs/helper": "^3.6.30",
+    "@tarojs/mini-runner": "^3.6.30",
+    "@tarojs/plugin-framework-react": "^3.6.30",
+    "@tarojs/plugin-platform-weapp": "^3.6.30",
+    "@tarojs/react": "^4.2.1",
+    "@tarojs/runtime": "^3.6.30",
+    "@tarojs/service": "^3.6.30",
+    "@tarojs/shared": "^3.6.30",
+    "@tarojs/taro": "^3.6.30",
+    "classnames": "^2.3.2",
+    "dayjs": "^1.11.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/webpack-env": "^1.18.0",
+    "sass": "^1.63.0",
+    "typescript": "^5.1.0"
+  }
+}
