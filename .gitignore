@@ -1,6 +1,32 @@
+# IDE 缓存目录
+.vscode/
+.idea/
+
+# 包管理器日志
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 测试覆盖率文件
+coverage/
+
+# Windows 系统缩略图缓存
+Thumbs.db
+
+# 本地私有配置（不提交本地个性化设置）
+.codebuddy/settings.local.json
+project.private.config.json
+
+# 通用补充（建议一并加上）
+.DS_Store
+*.tmp
+*.bak
+*.log
+dist/
+build/
 node_modules/
 data/
 .env
-*.log
-.DS_Store
-dist/
+venv/
+env/
+*.env
